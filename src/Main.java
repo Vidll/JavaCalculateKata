@@ -15,26 +15,26 @@ public class Main {
     }
 
     public static void InputValuesOnCalculate() {
-        List<String> Values = new ArrayList<>();
+        List<String> values = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         StringTokenizer token = new StringTokenizer(scanner.nextLine());
 
         while (token.hasMoreElements()) {
-            Values.add(token.nextToken());
+            values.add(token.nextToken());
         }
         scanner.close();
 
-        if(Values.size() > 1){
+        if(values.size() > 1){
             StringBuilder SB = new StringBuilder();
-            for(String str: Values){
+            for(String str: values){
                 SB.append(str);
             }
             String inputValue = SB.toString();
             CheckStringValue(inputValue);
         }
         else{
-            CheckStringValue(Values.get(0));
+            CheckStringValue(values.get(0));
         }
     }
 
@@ -74,8 +74,8 @@ public class Main {
         }
 
         actionSet = false;
-        String[] Values = CheckRomanValue(valueOne.toString(), valueTwo.toString());
-        Calculate(Values, action);
+        String[] values = CheckRomanValue(valueOne.toString(), valueTwo.toString());
+        Calculate(values, action);
     }
 
     public static void Calculate(String[] _values, String _action){
