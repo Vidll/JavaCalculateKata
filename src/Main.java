@@ -38,20 +38,21 @@ public class Main {
         }
     }
 
-    public static void CheckStringValue(String _values){
+    public static void CheckStringValue(String _values) {
         StringBuilder valueOne = new StringBuilder();
         StringBuilder valueTwo = new StringBuilder();
         String action = "";
         boolean actionSet = false;
 
-        for (int valueIndex = 0; valueIndex < _values.length(); valueIndex++){
-            for(int mathIndex = 0; mathIndex < MathActions.length; mathIndex++){
-                if(_values.charAt(valueIndex) == MistakesValues[0].charAt(0) ||
-                _values.charAt(valueIndex) == MistakesValues[1].charAt(0)){
+        for (int valueIndex = 0; valueIndex < _values.length(); valueIndex++) {
+            for (int mathIndex = 0; mathIndex < MathActions.length; mathIndex++) {
+
+                if (_values.charAt(valueIndex) == MistakesValues[0].charAt(0) ||
+                        _values.charAt(valueIndex) == MistakesValues[1].charAt(0)) {
                     SetMistakes(Mistakes.NoInt);
                 }
-                if(_values.charAt(valueIndex) == MathActions[mathIndex].charAt(0)){
-                    if(actionSet){
+                if (_values.charAt(valueIndex) == MathActions[mathIndex].charAt(0)) {
+                    if (actionSet) {
                         SetMistakes(Mistakes.OnlyOneMathAction);
                     }
                     action = MathActions[mathIndex];
@@ -59,21 +60,22 @@ public class Main {
                     valueIndex++;
                 }
             }
-            if(!actionSet){
+
+            if (!actionSet) {
                 valueOne.append(_values.charAt(valueIndex));
-            }
-            else{
+            } else {
                 valueTwo.append(_values.charAt(valueIndex));
             }
         }
 
-        if (!actionSet){
-            SetMistakes(Mistakes.ActionNotFind);
+        if (!actionSet) {
+            throw new ArrayIndexOutOfBoundsException("Math action dont fiend");
+            //SetMistakes(Mistakes.ActionNotFind);
         }
 
         actionSet = false;
         String[] Values = CheckRomanValue(valueOne.toString(), valueTwo.toString());
-        Calculate(Values,action);
+        Calculate(Values, action);
     }
 
     public static void Calculate(String[] _values, String _action){
